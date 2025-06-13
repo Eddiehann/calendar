@@ -5,6 +5,8 @@ function Button() {
   
 	const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 	const [selectedDays, setSelectedDays] = useState([]);
+
+  // adds or removes day from state
 	const toggleDay = (day) => {
     setSelectedDays(prev =>
 			// Remove day if already selected, add if not selected
@@ -12,7 +14,9 @@ function Button() {
     );
   };
 
-	// add another layer of white background so it's seemless
+  const [dropDown, setDropDown] = useState(false);
+
+	// Dynamic button group styling for days of the week
 	const getRoundedDays = (index) => {
     const day = daysOfWeek[index];
     const prevDay = daysOfWeek[index - 1];
@@ -38,7 +42,9 @@ function Button() {
   return (
     <div className="grid gap-2">
       <div className="flex justify-between gap-4">
-        <button className="text-sm text-white bg-[#006bf9] rounded-xl hover:opacity-80">
+        <button 
+          onClick={() => setDropDown(dropDown === true ? false : true)}
+          className="text-sm text-white bg-[#006bf9] rounded-xl hover:opacity-80">
           + Add Event
         </button>
       
@@ -47,6 +53,7 @@ function Button() {
         </button>
       </div>
 
+      { dropDown === true && (
 			<div className="grid w-full rounded-xl bg-[#f9f9f9] 
 											gap-2 p-4 shadow-md"> 
 				<div className="flex justify-between">
@@ -72,14 +79,7 @@ function Button() {
 					</div>
 				</div>
 
-				<div>
-				<input type="text" id="name" class="bg-white shadow-md w-full
-					border-[#eeeeee] text-[#808080] text-sm rounded-xl
-					focus:ring-blue-500 focus:border-blue-500 p-2.5 required" 
-							placeholder="Scroll Bar Placeholder" required />
-				</div>
-
-			</div>
+			</div>)}
     </div>
   )
 }
