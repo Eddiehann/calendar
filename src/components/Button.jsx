@@ -12,7 +12,7 @@ function Button() {
     );
   };
 
-	// MAKE THE OTHER ONES BESIDE DAYS ROUND AS WELL
+	// add another layer of white background so it's seemless
 	const getRoundedDays = (index) => {
     const day = daysOfWeek[index];
     const prevDay = daysOfWeek[index - 1];
@@ -22,12 +22,17 @@ function Button() {
     const prevSelected = selectedDays.includes(prevDay);
     const nextSelected = selectedDays.includes(nextDay);
 
-    if (!isSelected) return '';
-
-    if (!prevSelected && !nextSelected) return 'rounded-xl';
-    if (!prevSelected) return 'rounded-l-xl';
-    if (!nextSelected) return 'rounded-r-xl';
-    return ''; // middle of a group
+    if (isSelected) {
+      if (!prevSelected && !nextSelected) return 'rounded-xl';    // single
+      if (!prevSelected) return 'rounded-l-xl';                   // start of group
+      if (!nextSelected) return 'rounded-r-xl';                   // end of group
+      return '';                                                  // middle of group
+    } else {
+      if (prevSelected && !nextSelected) return 'rounded-l-xl';   // right edge of a group
+      if (!prevSelected && nextSelected) return 'rounded-r-xl';   // left edge of a group
+      if (prevSelected && nextSelected) return 'rounded-xl';      // middle of group
+      return '';                                                  // outside any group
+    }
   };
 
   return (
