@@ -11,9 +11,9 @@ function App() {
                       max-w-screen-md w-full min-h-screen mx-auto 
                       border-x-2 bg-white">
 
-        <div className="border-b-2 font-semibold p-4"> 
+        <div className="border-b-2 font-semibold px-6 py-4"> 
           <h1 className="text-black">Calender</h1>
-          <p>Built with Jsx + React</p>
+          <p>Built with React + Vite</p>
         </div>
 
         
