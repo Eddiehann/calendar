@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react';
 
+
 function Button() {
   
 	const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -44,7 +45,8 @@ function Button() {
       <div className="flex justify-between gap-4">
         <button 
           onClick={() => setDropDown(dropDown === true ? false : true)}
-          className="text-sm text-white bg-[#006bf9] rounded-xl hover:opacity-80">
+          className={`${dropDown == true ? 'bg-[#808080]' : 'bg-[#006bf9]'}
+                      "transition text-sm text-white rounded-xl hover:opacity-80"`}>
           + Add Event
         </button>
       
@@ -55,8 +57,8 @@ function Button() {
 
       { dropDown === true && (
 			<div className="grid w-full rounded-xl bg-[#f9f9f9] 
-											gap-2 p-4 shadow-md"> 
-				<div className="flex justify-between">
+											gap-2 p-4 shadow-md transition fade-down"> 
+				<section className="flex justify-between fade-down transition">
 					<input type="text" id="name" class="bg-white shadow-md
 					border-[#eeeeee] text-[#808080] text-sm rounded-xl
 					focus:ring-blue-500 focus:border-blue-500 p-2.5 required" 
@@ -77,7 +79,7 @@ function Button() {
 							</button>
 						))}
 					</div>
-				</div>
+				</section>
 
 			</div>)}
     </div>
