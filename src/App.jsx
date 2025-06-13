@@ -12,7 +12,7 @@ function App() {
                       border-x-2 bg-white">
 
         <div className="border-b-2 font-semibold px-6 py-4"> 
-          <h1 className="text-black">Calender</h1>
+          <h1 className="text-black">Calendar</h1>
           <p>Built with React + Vite</p>
         </div>
 

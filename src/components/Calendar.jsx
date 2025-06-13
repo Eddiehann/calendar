@@ -68,47 +68,47 @@ function Calendar() {
 	const timeSlots = generateTimeSlots(8, 22, 30);
 
   return (
-    <>
-			<div className="grid grid-cols-[auto_1fr] text-md
-											p-6 rounded-2xl bg-[#f9f9f9]">
-				<div className="pt-4 px-2">
-					{timeLabels.map((time, index) => (
-							<div key={index}>
-								<div className="py-3 text-end">
-									{time}
-								</div>
+		<div className="grid grid-cols-[auto_1fr] text-md
+										p-6 rounded-xl bg-[#f9f9f9] shadow-md">
+			<div className="pt-4 px-2">
+				{timeLabels.map((time, index) => (
+						<div key={index}>
+							<div className="py-3 text-end">
+								{time}
 							</div>
-					))}
-				</div>
-
-				<div className="grid w-full grid-cols-7 px-2 justify-between">
-					{daysOfWeek.map((day, index) => (
-						<div>
-							<div key={index} className="w-full text-center text-black pb-4 border-b-2">
-								{day}
-							</div>
-							
-							{timeSlots.slice(1).map((time, index) => (
-								
-								<div key={index}
-								className={`h-6 flex items-center justify-center text-white text-sm
-									${time % 100 == 30 || events.some(event => isSlotActive(day, time, event)) ? '' : 'border-b-2'} 
-									${events.some(event => isSlotActive(day, time, event)) ? 'bg-[#008575]' : ''}
-									${events.some(event => isStart(day, time, event)) ? 'rounded-t-xl' : ''}
-									${events.some(event => isEnd(day, time, event)) ? 'rounded-b-xl' : ''}
-									`}>
-									{
-										// Find the event that starts at this time and day
-										events.find(event => isStart(day, time, event))?.name 
-  								}
-								</div>
-							))}
 						</div>
-					))}
-				</div>
+				))}
 			</div>
-      
-   	</>
+
+			<div className="grid w-full grid-cols-7 px-2 justify-between">
+				{daysOfWeek.map((day, index) => (
+					<div>
+						<div key={index} className="w-full text-center text-black pb-4 border-b-2">
+							{day}
+						</div>
+							
+						{timeSlots.slice(1).map((time, index) => {
+							
+							// find event that takes up the current timeslot
+							const currEvent = events.find(event => isSlotActive(day, time, event))
+							const hasEvent = Boolean(currEvent);
+							const isEventStart = hasEvent && isStart(day, time, currEvent);
+							const isEventEnd = hasEvent && isEnd(day, time, currEvent);
+
+							return( 
+								<div key={index}
+								className={`h-6 flex items-center justify-center text-white text-sm opacity-80
+													${time % 100 == 30 || currEvent ? '' : 'border-b-2'} 
+													${hasEvent ? 'bg-[#006bf9]' : ''}
+													${isEventStart ? 'rounded-t-xl' : ''}
+													${isEventEnd ? 'rounded-b-xl' : ''}`}>
+									{isEventStart ? currEvent.name : ''}
+								</div>
+						)})}
+					</div>
+				))}
+			</div>
+		</div>
   )
 }
   
