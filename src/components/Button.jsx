@@ -45,35 +45,35 @@ function Button() {
       <div className="flex justify-between gap-4">
         <button 
           onClick={() => setDropDown(dropDown === true ? false : true)}
-          className={`${dropDown == true ? 'bg-[#808080]' : 'bg-[#006bf9]'}
-                      "transition text-sm text-white rounded-xl hover:opacity-80"`}>
+          className={`${dropDown == true ? 'bg-[#808080]' : 'hover:opacity-75'}
+                      transition text-sm rounded-xl text-white bg-[#0079fa]`}>
           + Add Event
         </button>
       
-				<button className="text-sm text-white bg-[#006bf9] rounded-xl hover:opacity-80">
+				<button className="text-sm bg-[#0079fa] rounded-xl hover:opacity-75 text-white">
           Export
         </button>
       </div>
 
       { dropDown === true && (
-			<div className="grid w-full rounded-xl bg-[#f9f9f9] 
-											gap-2 p-4 shadow-md transition fade-down"> 
-				<section className="flex justify-between fade-down transition">
+			<div className="grid w-full rounded-xl bg-[#f9f9f9]
+											gap-4 p-4 shadow-md transition fade-down"> 
+				<section className="flex justify-between fade-down transition gap-6">
 					<input type="text" id="name" class="bg-white shadow-md
-					border-[#eeeeee] text-[#808080] text-sm rounded-xl
-					focus:ring-blue-500 focus:border-blue-500 p-2.5 required" 
+					border-[#eeeeee] text-[#808080] text-sm rounded-xl w-full
+					focus:ring-[#0079fa] focus:border-[#0079fa] p-2.5 required" 
 							placeholder="Event Name" required />
 
 					<div className = "flex">
 						{daysOfWeek.map((day, index) => (
 							<button
 								key={day}
-								onClick={() => toggleDay(day,)}
+								onClick={() => toggleDay(day)}
 								className={`shadow-md
 									${getRoundedDays(index)}
 									${day == 'Sun' ? 'rounded-l-xl' : ''}
 									${day == 'Sat' ? 'rounded-r-xl' : ''}
-									${selectedDays.includes(day) ? 'bg-[#006bf9] text-white' : 'bg-white'}`}
+									${selectedDays.includes(day) ? 'bg-[#0079fa] text-white' : 'bg-white'}`}
 							>
 								{day}
 							</button>
@@ -81,6 +81,36 @@ function Button() {
 					</div>
 				</section>
 
+        <section className="flex justify-between fade-down transition">
+          <div className="flex gap-6 ">
+            <input type="text" id="name" class="bg-white shadow-md
+            border-[#eeeeee] text-[#808080] text-sm rounded-xl w-full flex-1
+            focus:ring-[#0079fa] focus:border-[#0079fa] p-2.5 required" 
+                placeholder="Start" required />
+            <input type="text" id="name" class="bg-white shadow-md
+            border-[#eeeeee] text-[#808080] text-sm rounded-xl w-full flex-1
+            focus:ring-[#0079fa] focus:border-[#0079fa] p-2.5 required" 
+                placeholder="End" required />
+        
+            <div className="flex justify-between items-center gap-4"> 
+              <button className="circle-button shadow-md bg-[#ff313b]"></button>
+              <button className="circle-button shadow-md bg-[#ff8333]"></button>
+              <button className="circle-button shadow-md bg-[#ffc72e]"></button>
+              <button className="circle-button shadow-md bg-[#00c155]"></button>
+              <button className="circle-button shadow-md bg-[#00bbc8]"></button>
+              <button className="circle-button shadow-md bg-[#0079fa]"></button>
+              <button className="circle-button shadow-md bg-[#5b45ee]"></button>
+              <button className="circle-button shadow-md bg-[#cb20d7]"></button>
+              <button className="circle-button shadow-md bg-black"></button>
+            </div>
+          </div>
+        </section>
+
+        <section>
+            <button className="text-sm bg-[#0079fa] rounded-xl hover:opacity-75 text-white w-full">
+             + Add Event
+            </button>
+          </section>
 			</div>)}
     </div>
   )

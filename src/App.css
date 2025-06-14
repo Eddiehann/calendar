@@ -40,7 +40,7 @@
 
 /* fade up animation */
 .fade-up section {
-  animation: up 0.8s ease-in-out forwards;
+  animation: up 0.5s ease-in-out forwards;
   opacity: 0;
 }
 
@@ -52,7 +52,7 @@
 
 /* fade right animation */
 .fade-right header {
-  animation: right 0.8s ease-in-out forwards;
+  animation: right 0.5s ease-in-out forwards;
   opacity: 0;
 }
 
